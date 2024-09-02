@@ -1,8 +1,6 @@
 function FileHeader() {
   return (
-    <div className="flex flex-row border w-full h-12 bg-yellow-500 shrink-0">
-      File Header
-    </div>
+    <div className="flex flex-row border-b border-burnished-brown w-full h-12 bg-deep-taupe shrink-0"></div>
   );
 }
 

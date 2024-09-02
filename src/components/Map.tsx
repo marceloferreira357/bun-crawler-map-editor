@@ -1,8 +1,7 @@
 function Map() {
+  // TODO: add grid component to map
   return (
-    <div className="flex flex-row border w-[calc(100dvw-448px)] h-full bg-blue-500 shrink-0">
-      Map
-    </div>
+    <div className="flex flex-row w-[calc(100dvw-448px)] overflow-auto h-full bg-black-coffee shrink-0"></div>
   );
 }
 

@@ -1,8 +1,6 @@
 function TileSelectorSidebar() {
   return (
-    <div className="flex flex-row border w-96 h-full bg-gray-500 shrink-0">
-      Tile Selector Sidebar
-    </div>
+    <div className="flex flex-row border-l border-burnished-brown w-96 h-full bg-deep-taupe shrink-0"></div>
   );
 }
 

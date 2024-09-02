@@ -1,8 +1,6 @@
 function EditorSidebar() {
   return (
-    <div className="flex flex-row border w-16 h-full bg-green-500 shrink-0">
-      Editor Sidebar
-    </div>
+    <div className="flex flex-row border-r border-burnished-brown w-16 h-full bg-deep-taupe shrink-0"></div>
   );
 }
 
