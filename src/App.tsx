@@ -1,6 +1,6 @@
 import EditorSidebar from "./components/EditorSidebar/EditorSidebar";
 import FileHeader from "./components/FileHeader/FileHeader";
-import Map from "./components/Map";
+import Map from "./components/Map/Map";
 import TileSelectorSidebar from "./components/TileSelectorSidebar/TileSelectorSidebar";
 
 function App() {
