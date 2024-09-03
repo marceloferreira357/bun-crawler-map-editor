@@ -4,10 +4,13 @@ export default {
   theme: {
     extend: {
       colors: {
-        "black-coffee": "#3E3232",
-        "dark-puce": "#503C3C",
-        "deep-taupe": "#7E6363",
-        "burnished-brown": "#A87C7C",
+        "charleston-green": "#292929",
+        "philippine-gray": "#8A8A8A",
+        "dark-liver": "#4E4E4E",
+        "sonic-silver": "#777777",
+        "quick-silver": "#A2A2A2",
+        "american-silver": "#D0D0D0",
+        "bright-gray": "#EDEDED",
       },
     },
   },

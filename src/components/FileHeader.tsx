@@ -1,6 +1,6 @@
 function FileHeader() {
   return (
-    <div className="flex flex-row border-b border-burnished-brown w-full h-12 bg-deep-taupe shrink-0"></div>
+    <div className="flex flex-row w-full h-12 bg-philippine-gray shrink-0 shadow-md"></div>
   );
 }
 
