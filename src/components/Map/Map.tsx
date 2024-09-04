@@ -11,18 +11,35 @@ function Map() {
     [scale, zoom, width, height]
   );
 
+  // Adjust outer container dimensions based on zoom level
+  const { adjustedWidth, adjustedHeight } = useMemo(
+    () => ({
+      adjustedWidth: containerWidth * zoom,
+      adjustedHeight: containerHeight * zoom,
+    }),
+    [containerWidth, containerHeight, zoom]
+  );
+
   return (
     <div className="flex flex-row w-[calc(100dvw-448px)] h-full overflow-auto bg-dark-liver shrink-0 p-2">
       <div
         className="relative"
         style={{
-          width: `${containerWidth}px`,
-          height: `${containerHeight}px`,
-          transform: `scale(${zoom})`,
-          transformOrigin: "0 0",
+          minWidth: `${adjustedWidth}px`,
+          minHeight: `${adjustedHeight}px`,
         }}
       >
-        <Grid gridSize={gridSize} cols={cols} rows={rows} />
+        <div
+          className="absolute top-0 left-0"
+          style={{
+            width: `${containerWidth}px`,
+            height: `${containerHeight}px`,
+            transform: `scale(${zoom})`,
+            transformOrigin: "0 0",
+          }}
+        >
+          <Grid gridSize={gridSize} cols={cols} rows={rows} />
+        </div>
       </div>
     </div>
   );
