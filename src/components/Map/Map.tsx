@@ -1,29 +1,25 @@
 import { useMemo } from "react";
 import useMapStore from "../../stores/useMapStore";
 import Grid from "./Grid";
+import { calculateMapSize } from "./mapUtils";
 
 function Map() {
-  const { scale, width, height } = useMapStore((state) => state);
+  const { scale, width, height, zoom } = useMapStore((state) => state);
 
-  const { gridSize, cols, rows } = useMemo(() => {
-    const gridSize = 16 * scale; // size of each square in pixels
-    const cols = Math.floor(width / gridSize + 1);
-    const rows = Math.floor(height / gridSize + 1);
-
-    return {
-      gridSize,
-      cols,
-      rows,
-    };
-  }, [scale, width, height]);
+  const { gridSize, cols, rows, containerWidth, containerHeight } = useMemo(
+    () => calculateMapSize(scale, zoom, width, height),
+    [scale, width, height, zoom]
+  );
 
   return (
     <div className="flex flex-row w-[calc(100dvw-448px)] h-full overflow-auto bg-dark-liver shrink-0 p-2">
       <div
         className="relative"
         style={{
-          minWidth: width,
-          minHeight: height,
+          minWidth: containerWidth,
+          minHeight: containerHeight,
+          transform: `scale(${zoom})`,
+          transformOrigin: "0 0",
         }}
       >
         <Grid gridSize={gridSize} cols={cols} rows={rows} />

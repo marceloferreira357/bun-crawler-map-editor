@@ -6,6 +6,7 @@ import InfoButton from "./InfoButton/InfoButton";
 import ScreenshotButton from "./ScreenshotButton";
 import ZoomInButton from "./ZoomInButton";
 import ZoomOutButton from "./ZoomOutButton";
+import ZoomResetButton from "./ZoomResetButton";
 
 function EditorSidebar() {
   return (
@@ -19,6 +20,7 @@ function EditorSidebar() {
         <GridButton />
         <ZoomInButton />
         <ZoomOutButton />
+        <ZoomResetButton />
       </ButtonsContainer>
       <ButtonsContainer>
         <InfoButton />

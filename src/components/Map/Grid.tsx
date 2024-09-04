@@ -1,3 +1,4 @@
+import React, { useMemo } from "react";
 import { cn } from "../../common/utils";
 import useMapStore from "../../stores/useMapStore";
 
@@ -7,30 +8,40 @@ type GridProps = {
   gridSize: number;
 };
 
-function Grid({ cols, rows, gridSize }: GridProps) {
+const Grid: React.FC<GridProps> = React.memo(({ cols, rows, gridSize }) => {
   const { showGrid, width, height } = useMapStore((state) => state);
+
+  const gridStyle = useMemo(
+    () => ({
+      width,
+      height,
+      gridTemplateColumns: `repeat(${cols}, ${gridSize}px)`,
+      gridTemplateRows: `repeat(${rows}, ${gridSize}px)`,
+    }),
+    [cols, rows, gridSize, width, height]
+  );
+
+  const cellClassName = useMemo(
+    () =>
+      cn(
+        "bg-charleston-green border",
+        showGrid ? "border-american-silver/10" : "border-transparent"
+      ),
+    [showGrid]
+  );
+
+  const totalCells = useMemo(() => cols * rows, [cols, rows]);
 
   return (
     <div
       className="absolute top-0 left-0 z-0 shadow-md rounded-md grid overflow-hidden"
-      style={{
-        width,
-        height,
-        gridTemplateColumns: `repeat(${cols}, ${gridSize}px)`,
-        gridTemplateRows: `repeat(${rows}, ${gridSize}px)`,
-      }}
+      style={gridStyle}
     >
-      {Array.from({ length: cols * rows }).map((_, index) => (
-        <div
-          key={index}
-          className={cn(
-            "bg-charleston-green border",
-            showGrid ? "border-american-silver/10" : "border-transparent"
-          )}
-        />
+      {Array.from({ length: totalCells }).map((_, index) => (
+        <div key={index} className={cellClassName} />
       ))}
     </div>
   );
-}
+});
 
 export default Grid;

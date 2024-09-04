@@ -1,24 +1,24 @@
 import { useCallback } from "react";
-import { TbZoomInFilled } from "react-icons/tb";
+import { TbZoomCancelFilled } from "react-icons/tb";
 import useMapStore from "../../stores/useMapStore";
 import Button from "../Button";
 
-function ZoomInButton() {
+function ZoomResetButton() {
   const { zoom, setZoom } = useMapStore((state) => state);
 
   const handleOnClick = useCallback(
     (event: React.MouseEvent<HTMLButtonElement, MouseEvent>): void => {
       event.preventDefault();
-      setZoom(zoom + 0.1);
+      setZoom(1);
     },
     [zoom]
   );
 
   return (
     <Button onClick={handleOnClick}>
-      <TbZoomInFilled size={"24px"} />
+      <TbZoomCancelFilled size={"24px"} />
     </Button>
   );
 }
 
-export default ZoomInButton;
+export default ZoomResetButton;
