@@ -1,5 +1,9 @@
 import { MapTileDefaultAttributes } from "./types";
 
+export const zIndex = {
+  modal: 10,
+};
+
 export const mapTileDefaultAttributes: MapTileDefaultAttributes = {
   column: {
     size: {

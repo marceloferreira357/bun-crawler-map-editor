@@ -1,14 +1,15 @@
-import { memo } from "react";
+import { cn } from "../../common/utils";
+import useMapStore from "../../stores/useMapStore";
 
 type GridProps = {
-  width: number;
-  height: number;
   cols: number;
   rows: number;
   gridSize: number;
 };
 
-function Grid({ width, height, cols, rows, gridSize }: GridProps) {
+function Grid({ cols, rows, gridSize }: GridProps) {
+  const { showGrid, width, height } = useMapStore((state) => state);
+
   return (
     <div
       className="absolute top-0 left-0 z-0 shadow-md rounded-md grid overflow-hidden"
@@ -22,11 +23,14 @@ function Grid({ width, height, cols, rows, gridSize }: GridProps) {
       {Array.from({ length: cols * rows }).map((_, index) => (
         <div
           key={index}
-          className="bg-charleston-green border border-american-silver/10"
+          className={cn(
+            "bg-charleston-green border",
+            showGrid ? "border-american-silver/10" : "border-transparent"
+          )}
         />
       ))}
     </div>
   );
 }
 
-export default memo(Grid);
+export default Grid;
