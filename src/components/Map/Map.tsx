@@ -8,7 +8,7 @@ function Map() {
 
   const { gridSize, cols, rows, containerWidth, containerHeight } = useMemo(
     () => calculateMapSize(scale, zoom, width, height),
-    [scale, width, height, zoom]
+    [scale, zoom, width, height]
   );
 
   return (
@@ -16,8 +16,8 @@ function Map() {
       <div
         className="relative"
         style={{
-          minWidth: containerWidth,
-          minHeight: containerHeight,
+          width: `${containerWidth}px`,
+          height: `${containerHeight}px`,
           transform: `scale(${zoom})`,
           transformOrigin: "0 0",
         }}

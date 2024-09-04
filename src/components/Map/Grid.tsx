@@ -9,16 +9,14 @@ type GridProps = {
 };
 
 const Grid: React.FC<GridProps> = React.memo(({ cols, rows, gridSize }) => {
-  const { showGrid, width, height } = useMapStore((state) => state);
+  const { showGrid } = useMapStore((state) => state);
 
   const gridStyle = useMemo(
     () => ({
-      width,
-      height,
       gridTemplateColumns: `repeat(${cols}, ${gridSize}px)`,
       gridTemplateRows: `repeat(${rows}, ${gridSize}px)`,
     }),
-    [cols, rows, gridSize, width, height]
+    [cols, rows, gridSize]
   );
 
   const cellClassName = useMemo(
