@@ -2,6 +2,7 @@ import ButtonContainer from "./ButtonContainer";
 import ExportMapButton from "./ExportMapButton";
 import ImportMapButton from "./ImportMapButton";
 import MapDetailsInputs from "./MapDetailsInputs/MapDetailsInputs";
+import ResetMapButton from "./ResetMapButton/ResetMapButton";
 
 function FileHeader() {
   return (
@@ -10,6 +11,9 @@ function FileHeader() {
         <MapDetailsInputs />
       </div>
       <div className="flex flex-row items-center gap-4">
+        <ButtonContainer label="Reset">
+          <ResetMapButton />
+        </ButtonContainer>
         <ButtonContainer label="Export">
           <ExportMapButton />
         </ButtonContainer>
