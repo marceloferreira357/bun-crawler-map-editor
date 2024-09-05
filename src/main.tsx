@@ -15,7 +15,11 @@ import "./index.css";
 
 createRoot(document.getElementById("root")!).render(
   <StrictMode>
-    <Toaster />
+    <Toaster
+      toastOptions={{
+        unstyled: true,
+      }}
+    />
     <App />
   </StrictMode>
 );

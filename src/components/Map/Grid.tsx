@@ -22,7 +22,7 @@ const Grid: React.FC<GridProps> = React.memo(({ cols, rows, gridSize }) => {
   const cellClassName = useMemo(
     () =>
       cn(
-        "bg-charleston-green border",
+        "border",
         showGrid ? "border-american-silver/10" : "border-transparent"
       ),
     [showGrid]
@@ -32,7 +32,7 @@ const Grid: React.FC<GridProps> = React.memo(({ cols, rows, gridSize }) => {
 
   return (
     <div
-      className="absolute top-0 left-0 z-0 shadow-md rounded-md grid overflow-hidden"
+      className="absolute top-0 left-0 z-0 grid overflow-hidden"
       style={gridStyle}
     >
       {Array.from({ length: totalCells }).map((_, index) => (

@@ -1,10 +1,15 @@
-import { useMemo } from "react";
+import { useEffect, useMemo, useRef } from "react";
 import useMapStore from "../../stores/useMapStore";
+import Background from "./Background";
+import GeneratingScreenshotMessage from "./GeneratingScreenshotMessage";
 import Grid from "./Grid";
 import { calculateMapSize } from "./mapUtils";
 
 function Map() {
-  const { scale, width, height, zoom } = useMapStore((state) => state);
+  const { scale, width, height, zoom, setMapRef, generatingScreenshot } =
+    useMapStore((state) => state);
+
+  const mapRef = useRef<HTMLDivElement>(null);
 
   const { gridSize, cols, rows, containerWidth, containerHeight } = useMemo(
     () => calculateMapSize(scale, zoom, width, height),
@@ -20,6 +25,12 @@ function Map() {
     [containerWidth, containerHeight, zoom]
   );
 
+  useEffect(() => {
+    if (mapRef?.current) {
+      setMapRef(mapRef);
+    }
+  }, [mapRef]);
+
   return (
     <div className="flex flex-row w-[calc(100dvw-448px)] h-full overflow-auto bg-dark-liver shrink-0 p-2">
       <div
@@ -29,13 +40,25 @@ function Map() {
           minHeight: `${adjustedHeight}px`,
         }}
       >
+        <Background
+          containerWidth={containerWidth}
+          containerHeight={containerHeight}
+        />
+        {generatingScreenshot && (
+          <GeneratingScreenshotMessage
+            containerWidth={containerWidth}
+            containerHeight={containerHeight}
+          />
+        )}
         <div
-          className="absolute top-0 left-0"
+          ref={mapRef}
+          className="absolute top-0 left-0 overflow-hidden rounded-md"
           style={{
             width: `${containerWidth}px`,
             height: `${containerHeight}px`,
             transform: `scale(${zoom})`,
             transformOrigin: "0 0",
+            zIndex: 1,
           }}
         >
           <Grid gridSize={gridSize} cols={cols} rows={rows} />

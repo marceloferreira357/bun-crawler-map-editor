@@ -17,7 +17,7 @@ function Input({ register, error, ...props }: InputProps) {
         opacity: 1,
       }}
       className={cn(
-        error ? "bg-red-600" : "bg-dark-liver",
+        error ? "bg-red-400" : "bg-dark-liver",
         "py-1 px-2 rounded-md w-full h-fit opacity-80"
       )}
     >

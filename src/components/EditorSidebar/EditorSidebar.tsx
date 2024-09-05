@@ -3,7 +3,7 @@ import CursorButton from "./CursorButton";
 import EraserButton from "./EraserButton";
 import GridButton from "./GridButton";
 import InfoButton from "./InfoButton/InfoButton";
-import ScreenshotButton from "./ScreenshotButton";
+import ScreenshotButton from "./ScreenshotButton/ScreenshotButton";
 import ZoomInButton from "./ZoomInButton";
 import ZoomOutButton from "./ZoomOutButton";
 import ZoomResetButton from "./ZoomResetButton";
