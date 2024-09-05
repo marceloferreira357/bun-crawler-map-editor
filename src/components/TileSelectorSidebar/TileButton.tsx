@@ -1,5 +1,7 @@
 import { motion } from "framer-motion";
+import { useCallback } from "react";
 import { MapTileVariant, PixelSize, Vector2 } from "../../common/types";
+import useMapStore from "../../stores/useMapStore";
 import MapTile from "../MapTile/MapTile";
 
 type TileButtonProps = {
@@ -9,6 +11,19 @@ type TileButtonProps = {
 };
 
 function TileButton({ position, size, variant }: TileButtonProps) {
+  const { setIsInEditorMode, setIsInEraserMode, setSelectedMapTile } =
+    useMapStore((state) => state);
+
+  const handleOnClick = useCallback(
+    (event: React.MouseEvent<HTMLButtonElement, MouseEvent>): void => {
+      event.preventDefault();
+      setIsInEditorMode(true);
+      setIsInEraserMode(false);
+      setSelectedMapTile(variant);
+    },
+    [position, size, variant]
+  );
+
   return (
     <motion.button
       whileHover={{
@@ -25,6 +40,7 @@ function TileButton({ position, size, variant }: TileButtonProps) {
         width: size.width,
         height: size.height,
       }}
+      onClick={handleOnClick}
     >
       <MapTile variant={variant} position={{ x: 0, y: 0 }} zIndex={-1} />
     </motion.button>

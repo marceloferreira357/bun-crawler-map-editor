@@ -91,6 +91,7 @@ export type BaseMapTile = Omit<Entity, "size" | "scale"> & {
 export type MapTileDefaultAttributes = {
   [key in MapTileVariant]: {
     size: PixelSize;
+    zIndex: number;
   };
 };
 

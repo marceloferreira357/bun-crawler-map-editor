@@ -1,4 +1,5 @@
 import { useMemo } from "react";
+import SelectedMapTile from "./SelectedMapTile/SelectedMapTile";
 import TileButton from "./TileButton";
 import {
   gap,
@@ -16,7 +17,7 @@ function TileSelectorSidebar() {
   );
 
   return (
-    <div className="flex flex-col w-96 h-full bg-sonic-silver shrink-0">
+    <div className="flex flex-col w-96 h-full bg-sonic-silver shrink-0 gap-2">
       <div className="relative bg-black/10 rounded-md ml-0.5 w-[calc(100%-4px)] h-[569px] mt-4">
         <div
           className="absolute top-2 left-2"
@@ -65,6 +66,7 @@ function TileSelectorSidebar() {
           })}
         </div>
       </div>
+      <SelectedMapTile />
     </div>
   );
 }
