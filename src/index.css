@@ -14,3 +14,25 @@ img {
   image-rendering: pixelated;
   pointer-events: none;
 }
+
+::-webkit-scrollbar {
+  width: 10px;
+  height: 10px;
+}
+
+::-webkit-scrollbar-corner {
+  background-color: #636363;
+}
+
+::-webkit-scrollbar-track {
+  background: #636363;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #8e8e8e;
+  border-radius: 10px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #9a9a9a;
+}
