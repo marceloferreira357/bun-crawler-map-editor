@@ -11,8 +11,15 @@ import { calculateMapSize, isCursorVisible } from "./mapUtils";
 function Map() {
   const [isCursorInBounds, setIsCursorInBounds] = useState(false);
 
-  const { scale, width, height, zoom, setMapRef, generatingScreenshot } =
-    useMapStore((state) => state);
+  const {
+    scale,
+    width,
+    height,
+    zoom,
+    setMapRef,
+    generatingScreenshot,
+    isModalOpen,
+  } = useMapStore((state) => state);
 
   const { x, y } = useCursorPosition();
 
@@ -59,7 +66,7 @@ function Map() {
         isCursorInBounds ? "cursor-none" : "cursor-default"
       )}
     >
-      {isCursorInBounds && <Cursor position={{ x, y }} />}
+      {isCursorInBounds && !isModalOpen && <Cursor position={{ x, y }} />}
       <div
         className="relative"
         style={{

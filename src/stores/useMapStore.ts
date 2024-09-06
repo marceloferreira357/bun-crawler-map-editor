@@ -14,6 +14,7 @@ const useMapStore = create<{
   isInEraserMode: boolean;
   selectedMapTile: MapTileVariant | undefined;
   map: MapTileEditor[];
+  isModalOpen: boolean;
   setShowGrid: (showGrid: boolean) => void;
   setMapName: (mapName: string) => void;
   setWidth: (width: number) => void;
@@ -25,6 +26,7 @@ const useMapStore = create<{
   setIsInEditorMode: (isInEditorMode: boolean) => void;
   setIsInEraserMode: (isInEraserMode: boolean) => void;
   setSelectedMapTile: (selectedMapTile: MapTileVariant | undefined) => void;
+  setIsModalOpen: (isModalOpen: boolean) => void;
 }>((set) => ({
   scale: 3,
   width: 800,
@@ -38,6 +40,7 @@ const useMapStore = create<{
   isInEraserMode: false,
   selectedMapTile: undefined,
   map: [],
+  isModalOpen: false,
   setShowGrid: (showGrid: boolean) => set((state) => ({ ...state, showGrid })),
   setMapName: (mapName: string) => set((state) => ({ ...state, mapName })),
   setWidth: (width: number) => set((state) => ({ ...state, width })),
@@ -54,6 +57,8 @@ const useMapStore = create<{
     set((state) => ({ ...state, isInEraserMode })),
   setSelectedMapTile: (selectedMapTile: MapTileVariant | undefined) =>
     set((state) => ({ ...state, selectedMapTile })),
+  setIsModalOpen: (isModalOpen: boolean) =>
+    set((state) => ({ ...state, isModalOpen })),
 }));
 
 export default useMapStore;

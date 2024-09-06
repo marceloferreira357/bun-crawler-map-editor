@@ -1,6 +1,7 @@
 import { AnimatePresence, motion } from "framer-motion";
-import { useCallback } from "react";
+import { useCallback, useEffect } from "react";
 import { zIndex } from "../common/constants";
+import useMapStore from "../stores/useMapStore";
 
 type ModalProps = {
   children: React.ReactNode;
@@ -9,6 +10,8 @@ type ModalProps = {
 };
 
 function Modal({ show, setShow, children }: ModalProps) {
+  const { setIsModalOpen } = useMapStore((state) => state);
+
   const handleOnClose = useCallback(() => {
     setShow(false);
   }, [show]);
@@ -20,6 +23,10 @@ function Modal({ show, setShow, children }: ModalProps) {
     },
     []
   );
+
+  useEffect(() => {
+    setIsModalOpen(show);
+  }, [show]);
 
   return (
     <AnimatePresence>
