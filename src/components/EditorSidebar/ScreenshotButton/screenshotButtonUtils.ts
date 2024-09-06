@@ -1,23 +1,24 @@
-import html2canvas from "html2canvas";
+import { toPng } from "html-to-image";
 
 export const generateScreenshot = async (
   mapRef: React.RefObject<HTMLDivElement>,
   mapName: string
 ) => {
-  // Temporarily remove zoom before taking the screenshot
   const mapElement = mapRef.current!;
-  const originalTransform = mapElement.style.transform;
 
-  mapElement.style.transform = "none"; // Remove the zoom scaling
+  if (!mapElement) {
+    throw new Error("Map element not found.");
+  }
 
-  const canvas = await html2canvas(mapElement);
+  const dataUrl = await toPng(mapElement, {
+    backgroundColor: "#000000",
+    quality: 1,
+    width: mapElement.offsetWidth,
+    height: mapElement.offsetHeight,
+  });
 
-  // Restore the original zoom
-  mapElement.style.transform = originalTransform;
-
-  const imgData = canvas.toDataURL("image/png");
   const link = document.createElement("a");
-  link.href = imgData;
+  link.href = dataUrl;
   link.download = `${mapName}.png`;
   link.click();
 };
