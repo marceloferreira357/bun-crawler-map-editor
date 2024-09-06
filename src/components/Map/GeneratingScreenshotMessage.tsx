@@ -20,7 +20,7 @@ function GeneratingScreenshotMessage({
         height: `${containerHeight}px`,
         transform: `scale(${zoom})`,
         transformOrigin: "0 0",
-        zIndex: 4,
+        zIndex: 2,
       }}
     >
       <Spinner size={`${40 * zoom}`} />

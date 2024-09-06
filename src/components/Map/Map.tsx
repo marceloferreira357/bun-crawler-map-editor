@@ -5,7 +5,8 @@ import useMapStore from "../../stores/useMapStore";
 import Background from "./Background";
 import Cursor from "./Cursor/Cursor";
 import GeneratingScreenshotMessage from "./GeneratingScreenshotMessage";
-import Grid from "./Grid";
+import Grid from "./Grid/Grid";
+import MapTileGrid from "./MapTileGrid";
 import { calculateMapSize, isCursorVisible } from "./mapUtils";
 
 function Map() {
@@ -19,6 +20,7 @@ function Map() {
     setMapRef,
     generatingScreenshot,
     isModalOpen,
+    map,
   } = useMapStore((state) => state);
 
   const { x, y } = useCursorPosition();
@@ -96,6 +98,9 @@ function Map() {
           }}
         >
           <Grid gridSize={gridSize} cols={cols} rows={rows} />
+          {map.map((mapTile, index) => (
+            <MapTileGrid key={index} mapTile={mapTile} />
+          ))}
         </div>
       </div>
     </div>
