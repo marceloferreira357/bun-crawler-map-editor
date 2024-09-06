@@ -1,9 +1,7 @@
 import { mapTileDefaultAttributes } from "../../../common/constants";
 import { PixelSize } from "../../../common/types";
 import useMapStore from "../../../stores/useMapStore";
-
-type ParentKey = "size" | "zIndex";
-type ChildKey = keyof PixelSize;
+import { ChildKey, ParentKey } from "./selectMapTileTypes";
 
 type MapTileAttributeProps = {
   title: string;

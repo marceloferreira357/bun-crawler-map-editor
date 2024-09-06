@@ -3,7 +3,7 @@ import { cn } from "../../common/utils";
 import useCursorPosition from "../../hooks/useCursorPosition";
 import useMapStore from "../../stores/useMapStore";
 import Background from "./Background";
-import Cursor from "./Cursor";
+import Cursor from "./Cursor/Cursor";
 import GeneratingScreenshotMessage from "./GeneratingScreenshotMessage";
 import Grid from "./Grid";
 import { calculateMapSize, isCursorVisible } from "./mapUtils";
