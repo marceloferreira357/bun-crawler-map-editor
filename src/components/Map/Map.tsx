@@ -1,22 +1,29 @@
-import { useEffect, useMemo, useRef } from "react";
+import { useEffect, useMemo, useRef, useState } from "react";
+import { cn } from "../../common/utils";
+import useCursorPosition from "../../hooks/useCursorPosition";
 import useMapStore from "../../stores/useMapStore";
 import Background from "./Background";
+import Cursor from "./Cursor";
 import GeneratingScreenshotMessage from "./GeneratingScreenshotMessage";
 import Grid from "./Grid";
-import { calculateMapSize } from "./mapUtils";
+import { calculateMapSize, isCursorVisible } from "./mapUtils";
 
 function Map() {
+  const [isCursorInBounds, setIsCursorInBounds] = useState(false);
+
   const { scale, width, height, zoom, setMapRef, generatingScreenshot } =
     useMapStore((state) => state);
 
+  const { x, y } = useCursorPosition();
+
   const mapRef = useRef<HTMLDivElement>(null);
+  const mapContainerRef = useRef<HTMLDivElement>(null);
 
   const { gridSize, cols, rows, containerWidth, containerHeight } = useMemo(
     () => calculateMapSize(scale, zoom, width, height),
     [scale, zoom, width, height]
   );
 
-  // Adjust outer container dimensions based on zoom level
   const { adjustedWidth, adjustedHeight } = useMemo(
     () => ({
       adjustedWidth: containerWidth * zoom,
@@ -26,13 +33,33 @@ function Map() {
   );
 
   useEffect(() => {
-    if (mapRef?.current) {
+    if (mapRef.current) {
       setMapRef(mapRef);
     }
-  }, [mapRef]);
+  }, [mapRef, setMapRef]);
+
+  useEffect(() => {
+    const handleMouseMove = (event: MouseEvent) => {
+      if (mapContainerRef.current) {
+        setIsCursorInBounds(isCursorVisible(mapContainerRef, event));
+      }
+    };
+
+    document.addEventListener("mousemove", handleMouseMove);
+    return () => {
+      document.removeEventListener("mousemove", handleMouseMove);
+    };
+  }, []);
 
   return (
-    <div className="flex flex-row w-[calc(100dvw-448px)] h-full overflow-auto bg-dark-liver shrink-0 p-2">
+    <div
+      ref={mapContainerRef}
+      className={cn(
+        "relative flex flex-row w-[calc(100dvw-448px)] h-full overflow-auto bg-dark-liver shrink-0 p-2",
+        isCursorInBounds ? "cursor-none" : "cursor-default"
+      )}
+    >
+      {isCursorInBounds && <Cursor position={{ x, y }} />}
       <div
         className="relative"
         style={{

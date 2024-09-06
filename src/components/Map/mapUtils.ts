@@ -21,3 +21,32 @@ export const calculateMapSize = (
     containerHeight,
   };
 };
+
+export const isCursorVisible = (
+  mapContainerRef: React.RefObject<HTMLDivElement>,
+  event: MouseEvent
+) => {
+  const rect = mapContainerRef.current!.getBoundingClientRect();
+
+  const scrollbarSize = 10;
+
+  const hasVerticalScrollbar =
+    mapContainerRef.current!.scrollHeight > rect.height;
+  const hasHorizontalScrollbar =
+    mapContainerRef.current!.scrollWidth > rect.width;
+
+  const adjustedRect = {
+    left: rect.left,
+    top: rect.top,
+    right: hasVerticalScrollbar ? rect.right - scrollbarSize : rect.right,
+    bottom: hasHorizontalScrollbar ? rect.bottom - scrollbarSize : rect.bottom,
+  };
+
+  const isInBounds =
+    event.clientX >= adjustedRect.left &&
+    event.clientX <= adjustedRect.right - 1 &&
+    event.clientY >= adjustedRect.top &&
+    event.clientY <= adjustedRect.bottom - 1;
+
+  return isInBounds;
+};

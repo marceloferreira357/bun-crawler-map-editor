@@ -6,11 +6,10 @@ import MapTile from "../../MapTile/MapTile";
 import MapTileAttribute from "./MapTileAttribute";
 
 function SelectedMapTile() {
-  const { selectedMapTile } = useMapStore((state) => state);
+  const { scale, selectedMapTile } = useMapStore((state) => state);
 
-  const { scale, width, height } = useMemo(
+  const { width, height } = useMemo(
     () => ({
-      scale: 3,
       width: selectedMapTile
         ? mapTileDefaultAttributes[selectedMapTile].size.width
         : 0,
