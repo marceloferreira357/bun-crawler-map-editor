@@ -28,9 +28,22 @@ To run the project, you will need:
     bun install
     ```
 
-3. Start the development server:
+3. Create a `.env` file from the example:
+    ```bash
+    cp .env.example .env
+    ```
+
+4. Start the development server:
     ```bash
     bun run dev
     ```
 
-4. Open your browser and navigate to `http://localhost:3001` to start creating your maps.
+5. Open your browser and navigate to `http://localhost:3001` to start creating your maps.
+
+## .env.example
+
+To configure the application, you need to set up environment variables. Create a `.env` file in the root of the project with the following content:
+
+```env
+VITE_PUBLIC_ADDRESS=http://127.0.0.1:3001
+VITE_RELEASE_VERSION=0.0.1
