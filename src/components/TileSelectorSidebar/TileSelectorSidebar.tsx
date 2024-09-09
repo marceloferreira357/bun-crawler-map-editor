@@ -17,11 +17,11 @@ function TileSelectorSidebar() {
   );
 
   return (
-    <div className="flex flex-col w-96 h-full bg-sonic-silver shrink-0 gap-2">
-      <div className="relative bg-black/10 rounded-md ml-0.5 w-[calc(100%-4px)] h-[569px] mt-4">
+    <div className="flex flex-col w-96 h-full bg-sonic-silver shrink-0 gap-2 p-2">
+      <div className="relative flex flex-col bg-black/10 rounded-md w-[calc(384px-20px)] h-3/4 overflow-y-auto">
         <div
-          className="absolute top-2 left-2"
-          style={{ transform: "scale(2.6)" }}
+          className="absolute top-2 left-[8px]"
+          style={{ transform: "scale(2.4)" }}
         >
           {/* Render 16x16 tiles, 9 per line */}
           {normalTiles.map((variant, index) => (
@@ -64,6 +64,9 @@ function TileSelectorSidebar() {
               />
             );
           })}
+
+          {/* spacer */}
+          <div className="absolute top-52 left-0 w-4 h-2" />
         </div>
       </div>
       <SelectedMapTile />

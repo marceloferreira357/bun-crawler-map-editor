@@ -21,7 +21,7 @@ function SelectedMapTile() {
   );
 
   return (
-    <div className="relative flex flex-row items-center bg-black/10 rounded-md w-[calc(100%-4px)] h-[150px] ml-0.5 p-2">
+    <div className="relative flex flex-row items-center bg-black/10 rounded-md w-[calc(384px-20px)] h-1/4 p-2">
       <AnimatePresence>
         {selectedMapTile ? (
           <motion.div
@@ -47,10 +47,7 @@ function SelectedMapTile() {
               <MapTileAttribute title="variant" value={selectedMapTile} />
               <MapTileAttribute title="width" parent="size" child="width" />
               <MapTileAttribute title="height" parent="size" child="height" />
-              <MapTileAttribute
-                title="zIndex"
-                parent="zIndex" /* TODO: add the zIndex to all the map tiles */
-              />
+              <MapTileAttribute title="zIndex" parent="zIndex" />
             </div>
           </motion.div>
         ) : (
