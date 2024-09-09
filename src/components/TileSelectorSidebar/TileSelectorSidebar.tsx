@@ -66,7 +66,7 @@ function TileSelectorSidebar() {
           })}
 
           {/* spacer */}
-          <div className="absolute top-52 left-0 w-4 h-2" />
+          <div className="absolute top-52 left-0 w-4 h-2 pointer-events-none" />
         </div>
       </div>
       <SelectedMapTile />
