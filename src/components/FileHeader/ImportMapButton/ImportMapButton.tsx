@@ -1,10 +1,13 @@
 import { useCallback } from "react";
+import { useFormContext } from "react-hook-form";
 import { BiSolidFileImport } from "react-icons/bi";
 import useMapStore from "../../../stores/useMapStore";
 import Button from "../../Button";
 import { importMap } from "./importMapButtonUtils";
 
 function ImportMapButton() {
+  const { setValue } = useFormContext();
+
   const { setMap, setMapName, setWidth, setHeight } = useMapStore(
     (state) => state
   );
@@ -13,9 +16,9 @@ function ImportMapButton() {
     (ev: unknown) => {
       const event = ev as React.ChangeEvent<HTMLInputElement>;
       event.preventDefault();
-      importMap(event, setMap, setMapName, setWidth, setHeight);
+      importMap(event, setMap, setMapName, setWidth, setHeight, setValue);
     },
-    [setMap, setMapName, setWidth, setHeight]
+    [setMap, setMapName, setWidth, setHeight, setValue]
   );
 
   const handleClick = useCallback(() => {
