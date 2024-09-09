@@ -54,10 +54,9 @@ export const addMapTile = (
 
 const positionsAreEqual = (
   pos1: { x: number; y: number },
-  pos2: { x: number; y: number }
+  pos2: { x: number; y: number },
+  tolerance: number = 0.01 // Adjust the tolerance for zoom-related precision
 ) => {
-  const tolerance = 0.01;
-
   return (
     Math.abs(pos1.x - pos2.x) < tolerance &&
     Math.abs(pos1.y - pos2.y) < tolerance
@@ -74,17 +73,18 @@ export const eraseMapTile = (
   // Calculate the position without zoom
   const { x, y } = getPosition(index, cols, gridSize);
 
-  // Adjust the position for the zoom level, and round for precision
-  const adjustedX = Math.round(x / zoom);
-  const adjustedY = Math.round(y / zoom);
+  // Adjust the position for the zoom level without rounding yet
+  const adjustedX = x / zoom;
+  const adjustedY = y / zoom;
 
   const overlappingTiles = map.filter((tile) =>
     positionsAreEqual(
       {
-        x: Math.round(tile.position!.x * zoom),
-        y: Math.round(tile.position!.y * zoom),
+        x: tile.position!.x, // Compare the unrounded position here
+        y: tile.position!.y,
       },
-      { x: adjustedX, y: adjustedY }
+      { x: adjustedX, y: adjustedY },
+      0.1 // Increase tolerance to handle zoom adjustments
     )
   );
 
@@ -97,10 +97,11 @@ export const eraseMapTile = (
       (tile) =>
         !positionsAreEqual(
           {
-            x: Math.round(tile.position!.x * zoom),
-            y: Math.round(tile.position!.y * zoom),
+            x: tile.position!.x,
+            y: tile.position!.y,
           },
-          { x: adjustedX, y: adjustedY }
+          { x: adjustedX, y: adjustedY },
+          0.1
         ) || tile.zIndex! !== maxZIndex
     );
   }
@@ -109,10 +110,11 @@ export const eraseMapTile = (
     (tile) =>
       !positionsAreEqual(
         {
-          x: Math.round(tile.position!.x * zoom),
-          y: Math.round(tile.position!.y * zoom),
+          x: tile.position!.x,
+          y: tile.position!.y,
         },
-        { x: adjustedX, y: adjustedY }
+        { x: adjustedX, y: adjustedY },
+        0.1
       )
   );
 };
