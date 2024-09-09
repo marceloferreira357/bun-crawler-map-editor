@@ -14,7 +14,7 @@ function CursorButton() {
       setIsInEraserMode(false);
       setSelectedMapTile(undefined);
     },
-    []
+    [setIsInEditorMode, setIsInEraserMode, setSelectedMapTile]
   );
 
   return (

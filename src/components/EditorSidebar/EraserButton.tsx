@@ -14,7 +14,7 @@ function EraserButton() {
       setIsInEraserMode(true);
       setSelectedMapTile(undefined);
     },
-    []
+    [setIsInEditorMode, setIsInEraserMode, setSelectedMapTile]
   );
 
   return (

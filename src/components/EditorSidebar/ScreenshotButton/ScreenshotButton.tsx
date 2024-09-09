@@ -30,7 +30,7 @@ function ScreenshotButton() {
         }
       }
     },
-    [mapRef, mapName, zoom]
+    [mapRef, mapName, zoom, setGeneratingScreenshot]
   );
 
   return (

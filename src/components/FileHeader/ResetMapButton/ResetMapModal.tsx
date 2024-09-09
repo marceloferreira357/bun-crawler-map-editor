@@ -18,7 +18,7 @@ function ResetMapModal({ show, setShow }: ResetMapModalProps) {
       event.preventDefault();
       setShow(false);
     },
-    [show]
+    [setShow, show]
   );
 
   const handleOnClickYes = useCallback(
@@ -30,7 +30,14 @@ function ResetMapModal({ show, setShow }: ResetMapModalProps) {
       setMap([]);
       setShow(false);
     },
-    [show]
+    [
+      show,
+      setIsInEditorMode,
+      setIsInEraserMode,
+      setSelectedMapTile,
+      setMap,
+      setShow,
+    ]
   );
 
   return (

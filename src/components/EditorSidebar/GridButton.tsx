@@ -11,7 +11,7 @@ function GridButton() {
       event.preventDefault();
       setShowGrid(!showGrid);
     },
-    [showGrid]
+    [setShowGrid, showGrid]
   );
 
   return (

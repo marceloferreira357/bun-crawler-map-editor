@@ -1,6 +1,6 @@
 import ButtonContainer from "./ButtonContainer";
-import ExportMapButton from "./ExportMapButton";
-import ImportMapButton from "./ImportMapButton";
+import ExportMapButton from "./ExportMapButton/ExportMapButton";
+import ImportMapButton from "./ImportMapButton/ImportMapButton";
 import MapDetailsInputs from "./MapDetailsInputs/MapDetailsInputs";
 import ResetMapButton from "./ResetMapButton/ResetMapButton";
 

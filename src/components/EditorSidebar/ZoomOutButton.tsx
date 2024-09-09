@@ -14,7 +14,7 @@ function ZoomOutButton() {
         setZoom(newZoom);
       }
     },
-    [zoom]
+    [setZoom, zoom]
   );
 
   return (

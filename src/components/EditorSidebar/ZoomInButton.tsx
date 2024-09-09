@@ -11,7 +11,7 @@ function ZoomInButton() {
       event.preventDefault();
       setZoom(zoom + 0.1);
     },
-    [zoom]
+    [setZoom, zoom]
   );
 
   return (

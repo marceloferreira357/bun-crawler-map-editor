@@ -21,7 +21,14 @@ function TileButton({ position, size, variant }: TileButtonProps) {
       setIsInEraserMode(false);
       setSelectedMapTile(variant);
     },
-    [position, size, variant]
+    [
+      position,
+      size,
+      variant,
+      setIsInEditorMode,
+      setIsInEraserMode,
+      setSelectedMapTile,
+    ]
   );
 
   return (

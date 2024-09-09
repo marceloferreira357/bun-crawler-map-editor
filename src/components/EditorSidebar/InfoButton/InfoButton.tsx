@@ -11,7 +11,7 @@ function InfoButton() {
       event.preventDefault();
       setShowInfoModal(true);
     },
-    [showInfoModal]
+    [setShowInfoModal, showInfoModal]
   );
 
   return (

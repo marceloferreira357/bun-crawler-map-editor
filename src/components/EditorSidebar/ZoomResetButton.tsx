@@ -11,7 +11,7 @@ function ZoomResetButton() {
       event.preventDefault();
       setZoom(1);
     },
-    [zoom]
+    [setZoom, zoom]
   );
 
   return (

@@ -11,7 +11,7 @@ function ResetMapButton() {
       event.preventDefault();
       setShowResetMapModal(true);
     },
-    []
+    [setShowResetMapModal]
   );
 
   return (

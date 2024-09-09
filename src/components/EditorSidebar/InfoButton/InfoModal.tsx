@@ -14,7 +14,7 @@ function InfoModal({ show, setShow }: InfoModalProps) {
       event.preventDefault();
       setShow(false);
     },
-    [show]
+    [setShow, show]
   );
 
   return (

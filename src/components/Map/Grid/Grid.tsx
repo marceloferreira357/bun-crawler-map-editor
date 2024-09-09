@@ -41,7 +41,15 @@ function Grid({ cols, rows, gridSize }: GridProps) {
         setMap(eraseMapTile(index, cols, gridSize, map, zoom));
       }
     },
-    [selectedMapTile, cols, gridSize, map]
+    [
+      isInEditorMode,
+      isInEraserMode,
+      selectedMapTile,
+      cols,
+      gridSize,
+      map,
+      setMap,
+    ]
   );
 
   return (
