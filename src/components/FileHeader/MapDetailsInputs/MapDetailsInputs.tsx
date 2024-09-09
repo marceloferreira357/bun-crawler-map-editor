@@ -4,6 +4,11 @@ import { FieldError, useFormContext } from "react-hook-form";
 import useMapStore from "../../../stores/useMapStore";
 import Input from "../../Input";
 import InputContainer from "./InputContainer";
+import {
+  getError,
+  validateAndSetMapName,
+  validateAndSetValue,
+} from "./mapDetailsInputsUtils";
 
 function MapDetailsInputs() {
   const {
@@ -23,40 +28,13 @@ function MapDetailsInputs() {
   const debouncedHeight = useDebounce(formHeight, 300);
 
   useEffect(() => {
-    if (debouncedWidth) {
-      trigger("width").then((isValid) => {
-        if (isValid) {
-          setWidth(Number(debouncedWidth));
-        }
-      });
-    }
-  }, [debouncedWidth]);
+    validateAndSetValue(trigger, "width", setWidth, debouncedWidth);
+    validateAndSetValue(trigger, "height", setHeight, debouncedHeight);
+  }, [debouncedWidth, debouncedHeight, trigger, setWidth, setHeight]);
 
   useEffect(() => {
-    if (debouncedHeight) {
-      trigger("height").then((isValid) => {
-        if (isValid) {
-          setHeight(Number(debouncedHeight));
-        }
-      });
-    }
-  }, [debouncedHeight]);
-
-  useEffect(() => {
-    trigger("mapName").then((isValid) => {
-      if (isValid) {
-        setMapName(formMapName);
-      }
-    });
-  }, [formMapName]);
-
-  const mapNameError = errors?.mapName as FieldError | undefined;
-  const widthError = (formWidth?.length < 1 || errors?.width) as
-    | FieldError
-    | undefined;
-  const heightError = (formHeight?.length < 1 || errors?.height) as
-    | FieldError
-    | undefined;
+    validateAndSetMapName(trigger, setMapName, formMapName);
+  }, [formMapName, trigger, setMapName]);
 
   return (
     <>
@@ -64,17 +42,21 @@ function MapDetailsInputs() {
         <Input
           name="mapName"
           register={register("mapName")}
-          error={mapNameError}
+          error={errors?.mapName as FieldError | undefined}
         />
       </InputContainer>
       <InputContainer label="Width" width={128}>
-        <Input name="width" register={register("width")} error={widthError} />
+        <Input
+          name="width"
+          register={register("width")}
+          error={getError("width", formWidth, errors)}
+        />
       </InputContainer>
       <InputContainer label="Height" width={128}>
         <Input
           name="height"
           register={register("height")}
-          error={heightError}
+          error={getError("height", formHeight, errors)}
         />
       </InputContainer>
     </>
