@@ -1,6 +1,6 @@
 import { useDebounce } from "@uidotdev/usehooks";
 import { useEffect } from "react";
-import { useFormContext } from "react-hook-form";
+import { FieldError, useFormContext } from "react-hook-form";
 import useMapStore from "../../../stores/useMapStore";
 import Input from "../../Input";
 import InputContainer from "./InputContainer";
@@ -50,27 +50,31 @@ function MapDetailsInputs() {
     });
   }, [formMapName]);
 
+  const mapNameError = errors?.mapName as FieldError | undefined;
+  const widthError = (formWidth?.length < 1 || errors?.width) as
+    | FieldError
+    | undefined;
+  const heightError = (formHeight?.length < 1 || errors?.height) as
+    | FieldError
+    | undefined;
+
   return (
     <>
       <InputContainer label="Name" width={256}>
         <Input
           name="mapName"
           register={register("mapName")}
-          error={errors?.mapName}
+          error={mapNameError}
         />
       </InputContainer>
       <InputContainer label="Width" width={128}>
-        <Input
-          name="width"
-          register={register("width")}
-          error={formWidth?.length < 1 || errors?.width}
-        />
+        <Input name="width" register={register("width")} error={widthError} />
       </InputContainer>
       <InputContainer label="Height" width={128}>
         <Input
           name="height"
           register={register("height")}
-          error={formHeight?.length < 1 || errors?.height}
+          error={heightError}
         />
       </InputContainer>
     </>
