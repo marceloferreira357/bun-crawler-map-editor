@@ -10,14 +10,14 @@ export const mapTileDefaultAttributes: MapTileDefaultAttributes = {
       width: 16,
       height: 48,
     },
-    zIndex: 0,
+    zIndex: 1,
   },
   column_wall: {
     size: {
       width: 16,
       height: 48,
     },
-    zIndex: 0,
+    zIndex: 1,
   },
   wall_fountain_mid_blue: {
     size: {
@@ -213,126 +213,126 @@ export const mapTileDefaultAttributes: MapTileDefaultAttributes = {
       width: 16,
       height: 16,
     },
-    zIndex: 0,
+    zIndex: 1,
   },
   wall_top_mid: {
     size: {
       width: 16,
       height: 16,
     },
-    zIndex: 0,
+    zIndex: 1,
   },
   wall_top_right: {
     size: {
       width: 16,
       height: 16,
     },
-    zIndex: 0,
+    zIndex: 1,
   },
   button_red_up: {
     size: {
       width: 16,
       height: 16,
     },
-    zIndex: 0,
+    zIndex: 1,
   },
   button_red_down: {
     size: {
       width: 16,
       height: 16,
     },
-    zIndex: 0,
+    zIndex: 1,
   },
   button_blue_up: {
     size: {
       width: 16,
       height: 16,
     },
-    zIndex: 0,
+    zIndex: 1,
   },
   button_blue_down: {
     size: {
       width: 16,
       height: 16,
     },
-    zIndex: 0,
+    zIndex: 1,
   },
   lever_left: {
     size: {
       width: 16,
       height: 16,
     },
-    zIndex: 0,
+    zIndex: 1,
   },
   lever_right: {
     size: {
       width: 16,
       height: 16,
     },
-    zIndex: 0,
+    zIndex: 1,
   },
   doors_frame_left: {
     size: {
       width: 16,
       height: 32,
     },
-    zIndex: 0,
+    zIndex: 1,
   },
   doors_frame_right: {
     size: {
       width: 16,
       height: 32,
     },
-    zIndex: 0,
+    zIndex: 1,
   },
   doors_frame_top: {
     size: {
       width: 32,
       height: 16,
     },
-    zIndex: 0,
+    zIndex: 1,
   },
   doors_leaf_closed: {
     size: {
       width: 32,
       height: 32,
     },
-    zIndex: 0,
+    zIndex: 1,
   },
   doors_leaf_open: {
     size: {
       width: 32,
       height: 32,
     },
-    zIndex: 0,
+    zIndex: 1,
   },
   wall_edge_bottom_left: {
     size: {
       width: 16,
       height: 16,
     },
-    zIndex: 0,
+    zIndex: 1,
   },
   wall_edge_bottom_right: {
     size: {
       width: 16,
       height: 16,
     },
-    zIndex: 0,
+    zIndex: 1,
   },
   wall_edge_mid_left: {
     size: {
       width: 16,
       height: 16,
     },
-    zIndex: 0,
+    zIndex: 1,
   },
   wall_edge_top_left: {
     size: {
       width: 16,
       height: 16,
     },
-    zIndex: 0,
+    zIndex: 1,
   },
   wall_edge_left: {
     size: {
@@ -346,7 +346,7 @@ export const mapTileDefaultAttributes: MapTileDefaultAttributes = {
       width: 16,
       height: 16,
     },
-    zIndex: 0,
+    zIndex: 1,
   },
   wall_edge_right: {
     size: {
@@ -360,21 +360,21 @@ export const mapTileDefaultAttributes: MapTileDefaultAttributes = {
       width: 16,
       height: 16,
     },
-    zIndex: 0,
+    zIndex: 1,
   },
   wall_edge_tshape_bottom_right: {
     size: {
       width: 16,
       height: 16,
     },
-    zIndex: 0,
+    zIndex: 1,
   },
   wall_edge_tshape_bottom_left: {
     size: {
       width: 16,
       height: 16,
     },
-    zIndex: 0,
+    zIndex: 1,
   },
   wall_edge_tshape_right: {
     size: {
@@ -395,62 +395,62 @@ export const mapTileDefaultAttributes: MapTileDefaultAttributes = {
       width: 16,
       height: 16,
     },
-    zIndex: 0,
+    zIndex: 1,
   },
   wall_outer_front_left: {
     size: {
       width: 16,
       height: 16,
     },
-    zIndex: 0,
+    zIndex: 1,
   },
   wall_outer_mid_left: {
     size: {
       width: 16,
       height: 16,
     },
-    zIndex: 0,
+    zIndex: 1,
   },
   wall_outer_top_left: {
     size: {
       width: 16,
       height: 16,
     },
-    zIndex: 0,
+    zIndex: 1,
   },
   wall_outer_top_right: {
     size: {
       width: 16,
       height: 16,
     },
-    zIndex: 0,
+    zIndex: 1,
   },
   wall_outer_mid_right: {
     size: {
       width: 16,
       height: 16,
     },
-    zIndex: 0,
+    zIndex: 1,
   },
   wall_fountain_top_1: {
     size: {
       width: 16,
       height: 16,
     },
-    zIndex: 0,
+    zIndex: 1,
   },
   wall_fountain_top_2: {
     size: {
       width: 16,
       height: 16,
     },
-    zIndex: 0,
+    zIndex: 1,
   },
   wall_fountain_top_3: {
     size: {
       width: 16,
       height: 16,
     },
-    zIndex: 0,
+    zIndex: 1,
   },
 };

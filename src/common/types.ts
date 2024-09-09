@@ -95,4 +95,6 @@ export type MapTileDefaultAttributes = {
   };
 };
 
-export type MapTileEditor = Omit<BaseMapTile, "scale">;
+export type MapTileEditor = Omit<BaseMapTile, "scale"> & {
+  size: PixelSize;
+};

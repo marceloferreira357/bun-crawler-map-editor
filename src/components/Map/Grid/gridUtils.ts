@@ -1,3 +1,4 @@
+import { mapTileDefaultAttributes } from "../../../common/constants";
 import { MapTileEditor, MapTileVariant } from "../../../common/types";
 
 const getPosition = (index: number, cols: number, gridSize: number) => {
@@ -21,12 +22,17 @@ export const addMapTile = (
 ) => {
   const { x, y } = getPosition(index, cols, gridSize);
 
+  const { zIndex, size } = mapTileDefaultAttributes[selectedMapTile!];
+
   // Adjust the position for the zoom level
   const adjustedX = x / zoom;
   const adjustedY = y / zoom;
 
   const existingTileIndex = map.findIndex(
-    ({ position }) => position?.x === adjustedX && position?.y === adjustedY
+    (tile) =>
+      tile.position?.x === adjustedX &&
+      tile.position?.y === adjustedY &&
+      tile.zIndex === zIndex
   );
 
   const newTile = {
@@ -35,7 +41,8 @@ export const addMapTile = (
       x: adjustedX,
       y: adjustedY,
     },
-    zIndex: 0,
+    zIndex,
+    size,
   };
 
   const updatedMap =
@@ -64,15 +71,53 @@ export const eraseMapTile = (
   gridSize: number,
   map: MapTileEditor[],
   zoom: number
-) => {
+): MapTileEditor[] => {
   // Calculate the position without zoom
   const { x, y } = getPosition(index, cols, gridSize);
 
-  // Adjust the position for the zoom level
-  const adjustedX = x / zoom;
-  const adjustedY = y / zoom;
+  // Adjust the position for the zoom level, and round for precision
+  const adjustedX = Math.round(x / zoom);
+  const adjustedY = Math.round(y / zoom);
 
+  // Find tiles with the same position (rounded)
+  const overlappingTiles = map.filter((tile) =>
+    positionsAreEqual(
+      {
+        x: Math.round(tile.position!.x * zoom),
+        y: Math.round(tile.position!.y * zoom),
+      },
+      { x: adjustedX, y: adjustedY }
+    )
+  );
+
+  // If there are overlapping tiles, remove the one with the greater zIndex
+  if (overlappingTiles.length > 1) {
+    const maxZIndex = Math.max(
+      ...overlappingTiles.map((tile) => tile.zIndex! as number)
+    );
+
+    // Return the map excluding the tile with the greater zIndex
+    return map.filter(
+      (tile) =>
+        !positionsAreEqual(
+          {
+            x: Math.round(tile.position!.x * zoom),
+            y: Math.round(tile.position!.y * zoom),
+          },
+          { x: adjustedX, y: adjustedY }
+        ) || tile.zIndex! !== maxZIndex
+    );
+  }
+
+  // If no overlapping tiles or only one tile, return the map excluding that tile
   return map.filter(
-    (tile) => !positionsAreEqual(tile.position!, { x: adjustedX, y: adjustedY })
+    (tile) =>
+      !positionsAreEqual(
+        {
+          x: Math.round(tile.position!.x * zoom),
+          y: Math.round(tile.position!.y * zoom),
+        },
+        { x: adjustedX, y: adjustedY }
+      )
   );
 };

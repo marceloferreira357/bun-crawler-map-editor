@@ -20,6 +20,7 @@ function MapTileGrid({ mapTile }: MapTileGrid) {
           mapTileDefaultAttributes[mapTile.variant].size.height * scale * zoom,
         top: mapTile.position!.y * zoom,
         left: mapTile.position!.x * zoom,
+        zIndex: mapTileDefaultAttributes[mapTile.variant].zIndex,
       }}
     >
       <MapTile
