@@ -47,3 +47,4 @@ To configure the application, you need to set up environment variables. Create a
 ```env
 VITE_PUBLIC_ADDRESS=http://127.0.0.1:3001
 VITE_RELEASE_VERSION=0.0.1
+```
