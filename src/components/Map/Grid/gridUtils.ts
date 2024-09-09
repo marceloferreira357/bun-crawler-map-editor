@@ -22,7 +22,7 @@ export const addMapTile = (
 ) => {
   const { x, y } = getPosition(index, cols, gridSize);
 
-  const { zIndex, size } = mapTileDefaultAttributes[selectedMapTile!];
+  const { zIndex } = mapTileDefaultAttributes[selectedMapTile!];
 
   // Adjust the position for the zoom level
   const adjustedX = x / zoom;
@@ -42,7 +42,6 @@ export const addMapTile = (
       y: adjustedY,
     },
     zIndex,
-    size,
   };
 
   const updatedMap =
@@ -79,7 +78,6 @@ export const eraseMapTile = (
   const adjustedX = Math.round(x / zoom);
   const adjustedY = Math.round(y / zoom);
 
-  // Find tiles with the same position (rounded)
   const overlappingTiles = map.filter((tile) =>
     positionsAreEqual(
       {
@@ -90,13 +88,11 @@ export const eraseMapTile = (
     )
   );
 
-  // If there are overlapping tiles, remove the one with the greater zIndex
   if (overlappingTiles.length > 1) {
     const maxZIndex = Math.max(
       ...overlappingTiles.map((tile) => tile.zIndex! as number)
     );
 
-    // Return the map excluding the tile with the greater zIndex
     return map.filter(
       (tile) =>
         !positionsAreEqual(
@@ -109,7 +105,6 @@ export const eraseMapTile = (
     );
   }
 
-  // If no overlapping tiles or only one tile, return the map excluding that tile
   return map.filter(
     (tile) =>
       !positionsAreEqual(
