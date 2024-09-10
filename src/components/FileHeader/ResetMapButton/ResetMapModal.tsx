@@ -10,7 +10,7 @@ type ResetMapModalProps = {
 };
 
 function ResetMapModal({ show, setShow }: ResetMapModalProps) {
-  const { setIsInEditorMode, setIsInEraserMode, setSelectedMapTile, setMap } =
+  const { setIsInEditorMode, setIsInEraserMode, setSelectedMapTile, setTiles } =
     useMapStore((state) => state);
 
   const handleOnClickNo = useCallback(
@@ -27,7 +27,7 @@ function ResetMapModal({ show, setShow }: ResetMapModalProps) {
       setIsInEditorMode(false);
       setIsInEraserMode(false);
       setSelectedMapTile(undefined);
-      setMap([]);
+      setTiles([]);
       setShow(false);
     },
     [
@@ -35,7 +35,7 @@ function ResetMapModal({ show, setShow }: ResetMapModalProps) {
       setIsInEditorMode,
       setIsInEraserMode,
       setSelectedMapTile,
-      setMap,
+      setTiles,
       setShow,
     ]
   );

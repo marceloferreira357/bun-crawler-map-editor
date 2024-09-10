@@ -6,13 +6,13 @@ import Button from "../../Button";
 import { exportMap } from "./exportMapButtonUtils";
 
 function ExportMapButton() {
-  const { map, mapName, width, height } = useMapStore((state) => state);
+  const { tiles, mapName, width, height } = useMapStore((state) => state);
 
   const handleOnClick = useCallback(
     (event: React.MouseEvent<HTMLButtonElement, MouseEvent>): void => {
       event.preventDefault();
       try {
-        exportMap(mapName, width, height, map);
+        exportMap(mapName, width, height, tiles);
         showToast({ message: `Map saved as ${mapName}.json` });
       } catch (error: unknown) {
         showToast({
@@ -21,7 +21,7 @@ function ExportMapButton() {
         });
       }
     },
-    [mapName, width, height, map]
+    [mapName, width, height, tiles]
   );
 
   return (

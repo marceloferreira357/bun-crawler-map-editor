@@ -17,7 +17,7 @@ export const addMapTile = (
   index: number,
   cols: number,
   gridSize: number,
-  map: MapTileEditor[],
+  tiles: MapTileEditor[],
   zoom: number
 ) => {
   const { x, y } = getPosition(index, cols, gridSize);
@@ -28,7 +28,7 @@ export const addMapTile = (
   const adjustedX = x / zoom;
   const adjustedY = y / zoom;
 
-  const existingTileIndex = map.findIndex(
+  const existingTileIndex = tiles.findIndex(
     (tile) =>
       tile.position?.x === adjustedX &&
       tile.position?.y === adjustedY &&
@@ -46,8 +46,8 @@ export const addMapTile = (
 
   const updatedMap =
     existingTileIndex !== -1
-      ? map.map((tile, idx) => (idx === existingTileIndex ? newTile : tile))
-      : map.concat(newTile);
+      ? tiles.map((tile, idx) => (idx === existingTileIndex ? newTile : tile))
+      : tiles.concat(newTile);
 
   return updatedMap;
 };
@@ -67,7 +67,7 @@ export const eraseMapTile = (
   index: number,
   cols: number,
   gridSize: number,
-  map: MapTileEditor[],
+  tiles: MapTileEditor[],
   zoom: number
 ): MapTileEditor[] => {
   // Calculate the position without zoom
@@ -77,7 +77,7 @@ export const eraseMapTile = (
   const adjustedX = x / zoom;
   const adjustedY = y / zoom;
 
-  const overlappingTiles = map.filter((tile) =>
+  const overlappingTiles = tiles.filter((tile) =>
     positionsAreEqual(
       {
         x: tile.position!.x, // Compare the unrounded position here
@@ -93,7 +93,7 @@ export const eraseMapTile = (
       ...overlappingTiles.map((tile) => tile.zIndex! as number)
     );
 
-    return map.filter(
+    return tiles.filter(
       (tile) =>
         !positionsAreEqual(
           {
@@ -106,7 +106,7 @@ export const eraseMapTile = (
     );
   }
 
-  return map.filter(
+  return tiles.filter(
     (tile) =>
       !positionsAreEqual(
         {

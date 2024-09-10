@@ -12,8 +12,8 @@ type GridProps = {
 function Grid({ cols, rows, gridSize }: GridProps) {
   const {
     showGrid,
-    map,
-    setMap,
+    tiles,
+    setTiles,
     selectedMapTile,
     isInEditorMode,
     isInEraserMode,
@@ -36,9 +36,11 @@ function Grid({ cols, rows, gridSize }: GridProps) {
     (event: React.MouseEvent<HTMLDivElement, MouseEvent>, index: number) => {
       event.preventDefault();
       if (isInEditorMode) {
-        setMap(addMapTile(selectedMapTile!, index, cols, gridSize, map, zoom));
+        setTiles(
+          addMapTile(selectedMapTile!, index, cols, gridSize, tiles, zoom)
+        );
       } else if (isInEraserMode) {
-        setMap(eraseMapTile(index, cols, gridSize, map, zoom));
+        setTiles(eraseMapTile(index, cols, gridSize, tiles, zoom));
       }
     },
     [
@@ -47,8 +49,8 @@ function Grid({ cols, rows, gridSize }: GridProps) {
       selectedMapTile,
       cols,
       gridSize,
-      map,
-      setMap,
+      tiles,
+      setTiles,
     ]
   );
 

@@ -4,7 +4,7 @@ import { showToast } from "../../../common/utils";
 
 export const importMap = (
   event: React.ChangeEvent<HTMLInputElement>,
-  setMap: (map: MapTileEditor[]) => void,
+  setTiles: (tiles: MapTileEditor[]) => void,
   setMapName: (mapName: string) => void,
   setWidth: (width: number) => void,
   setHeight: (height: number) => void,
@@ -17,10 +17,10 @@ export const importMap = (
   reader.onload = () => {
     try {
       const importedData = JSON.parse(reader.result as string);
-      const { map, mapName, width, height } = importedData;
+      const { tiles, mapName, width, height } = importedData;
 
-      if (map && mapName) {
-        setMap(map);
+      if (tiles && mapName) {
+        setTiles(tiles);
         setMapName(mapName);
         setWidth(width);
         setHeight(height);

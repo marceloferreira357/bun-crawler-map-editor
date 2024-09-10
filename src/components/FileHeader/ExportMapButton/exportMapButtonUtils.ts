@@ -4,9 +4,9 @@ export const exportMap = (
   mapName: string,
   width: number,
   height: number,
-  map: MapTileEditor[]
+  tiles: MapTileEditor[]
 ) => {
-  const mapData = JSON.stringify({ mapName, width, height, map }, null, 2);
+  const mapData = JSON.stringify({ mapName, width, height, tiles }, null, 2);
   const blob = new Blob([mapData], { type: "application/json" });
 
   const url = URL.createObjectURL(blob);

@@ -13,7 +13,7 @@ const useMapStore = create<{
   isInEditorMode: boolean;
   isInEraserMode: boolean;
   selectedMapTile: MapTileVariant | undefined;
-  map: MapTileEditor[];
+  tiles: MapTileEditor[];
   isModalOpen: boolean;
   setShowGrid: (showGrid: boolean) => void;
   setMapName: (mapName: string) => void;
@@ -22,7 +22,7 @@ const useMapStore = create<{
   setZoom: (zoom: number) => void;
   setMapRef: (mapRef: React.RefObject<HTMLDivElement> | undefined) => void;
   setGeneratingScreenshot: (generatingScreenshot: boolean) => void;
-  setMap: (map: MapTileEditor[]) => void;
+  setTiles: (tiles: MapTileEditor[]) => void;
   setIsInEditorMode: (isInEditorMode: boolean) => void;
   setIsInEraserMode: (isInEraserMode: boolean) => void;
   setSelectedMapTile: (selectedMapTile: MapTileVariant | undefined) => void;
@@ -39,7 +39,7 @@ const useMapStore = create<{
   isInEditorMode: false,
   isInEraserMode: false,
   selectedMapTile: undefined,
-  map: [],
+  tiles: [],
   isModalOpen: false,
   setShowGrid: (showGrid: boolean) => set((state) => ({ ...state, showGrid })),
   setMapName: (mapName: string) => set((state) => ({ ...state, mapName })),
@@ -50,7 +50,7 @@ const useMapStore = create<{
     set((state) => ({ ...state, mapRef })),
   setGeneratingScreenshot: (generatingScreenshot: boolean) =>
     set((state) => ({ ...state, generatingScreenshot })),
-  setMap: (map: MapTileEditor[]) => set((state) => ({ ...state, map })),
+  setTiles: (tiles: MapTileEditor[]) => set((state) => ({ ...state, tiles })),
   setIsInEditorMode: (isInEditorMode: boolean) =>
     set((state) => ({ ...state, isInEditorMode })),
   setIsInEraserMode: (isInEraserMode: boolean) =>

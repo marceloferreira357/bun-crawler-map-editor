@@ -8,7 +8,7 @@ import { importMap } from "./importMapButtonUtils";
 function ImportMapButton() {
   const { setValue } = useFormContext();
 
-  const { setMap, setMapName, setWidth, setHeight } = useMapStore(
+  const { setTiles, setMapName, setWidth, setHeight } = useMapStore(
     (state) => state
   );
 
@@ -16,9 +16,9 @@ function ImportMapButton() {
     (ev: unknown) => {
       const event = ev as React.ChangeEvent<HTMLInputElement>;
       event.preventDefault();
-      importMap(event, setMap, setMapName, setWidth, setHeight, setValue);
+      importMap(event, setTiles, setMapName, setWidth, setHeight, setValue);
     },
-    [setMap, setMapName, setWidth, setHeight, setValue]
+    [setTiles, setMapName, setWidth, setHeight, setValue]
   );
 
   const handleClick = useCallback(() => {

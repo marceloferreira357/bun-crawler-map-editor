@@ -20,7 +20,7 @@ function Map() {
     setMapRef,
     generatingScreenshot,
     isModalOpen,
-    map,
+    tiles,
   } = useMapStore((state) => state);
 
   const { x, y } = useCursorPosition();
@@ -98,7 +98,7 @@ function Map() {
           }}
         >
           <Grid gridSize={gridSize} cols={cols} rows={rows} />
-          {map.map((mapTile, index) => (
+          {tiles.map((mapTile, index) => (
             <MapTileGrid key={index} mapTile={mapTile} />
           ))}
         </div>
